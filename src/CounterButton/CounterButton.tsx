@@ -1,13 +1,13 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react'
-import s from './Button.module.css'
+import s from './CounterButton.module.css'
 
-type ButtonPropsType = {
+type CounterButtonPropsType = {
     disable: boolean
 } & DefaultButtonPropsType
 
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
-function Button(props: ButtonPropsType) {
+function CounterButton(props: CounterButtonPropsType) {
 
 
     return (
@@ -19,4 +19,4 @@ function Button(props: ButtonPropsType) {
     )
 }
 
-export default Button
+export default CounterButton

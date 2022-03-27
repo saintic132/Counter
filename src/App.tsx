@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import s from './App.module.css'
-import Button from "./Button/Button";
-import CountNumber from "./CountNumber/CountNumber";
+import CounterButton from "./CounterButton/CounterButton";
+import CounterDisplay from "./CounterDisplay/CounterDisplay";
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
             <div className={s.body}>
                 <div>
 
-                    <CountNumber
+                    <CounterDisplay
                         countNumber={countNumber}
                         maxCountActivated={maxCountActivated}
                     />
@@ -36,19 +36,19 @@ function App() {
                 </div>
                 <div className={s.button}>
 
-                    <Button
+                    <CounterButton
                         onClick={increaseCountNumber}
                         disable={maxCountActivated}
                     >
                         inc
-                    </Button>
+                    </CounterButton>
 
-                    <Button
+                    <CounterButton
                         onClick={resetCountNumber}
                         disable={disableButton}
                     >
                         reset
-                    </Button>
+                    </CounterButton>
 
                 </div>
             </div>
