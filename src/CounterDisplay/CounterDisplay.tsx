@@ -1,12 +1,12 @@
 import React from "react";
 import s from "./CounterDisplay.module.css";
 
-type CounterDisplay = {
+type CounterDisplayPropsType = {
     countNumber: number
     maxCountActivated: boolean
 }
 
-function CounterDisplay(props:CounterDisplay) {
+function CounterDisplay (props:CounterDisplayPropsType) {
     return (
         <div className={s.showTable}>
             <p className={props.maxCountActivated ? s.outputNumberRed : s.outputNumberDefault}>
