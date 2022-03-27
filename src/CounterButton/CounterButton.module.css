@@ -1,4 +1,4 @@
-button {
+.counterButton {
     background-color: #83B9E0;
     font-size: 40px;
     border: 1px solid #83B9E0;
@@ -6,7 +6,7 @@ button {
     box-shadow: 0 9px #999;
 }
 
-button:active {
+.counterButton:active {
     background-color: #83B9E0;
     font-size: 40px;
     border: 1px solid #83B9E0;

@@ -9,11 +9,11 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 
 function CounterButton(props: CounterButtonPropsType) {
 
-
     return (
             <button
-                className={s.default}
+                className={s.counterButton}
                 disabled={props.disable}
+
                 {...props}
             />
     )
