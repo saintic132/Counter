@@ -8,6 +8,7 @@ type SetCounterPropsType = {
     setIncorrectStatus: (status: boolean) => void
     setLocalStartValue: (number: number) => void
     setDisableResetButton: (status: boolean) => void
+    setDisableIncButton: (status: boolean) => void
     resetCountNumber: () => void
 }
 
@@ -24,12 +25,14 @@ function SetCounter(props: SetCounterPropsType) {
             setDisableSetButton(true)
             props.setIncorrectStatus(true)
             props.setDisableResetButton(true)
+            props.setDisableIncButton(true)
         }
         if (Number(e.currentTarget.value) > startValue && Number(e.currentTarget.value) > 0 && startValue >= 0) {
             setDisableSetButton(false)
             props.changeEnterValueMode(true)
             props.setIncorrectStatus(false)
             props.setDisableResetButton(true)
+            props.setDisableIncButton(true)
         }
         setMaxValue(Number(e.currentTarget.value))
     }
@@ -38,12 +41,14 @@ function SetCounter(props: SetCounterPropsType) {
             setDisableSetButton(true)
             props.setIncorrectStatus(true)
             props.setDisableResetButton(true)
+            props.setDisableIncButton(true)
         }
         if (Number(e.currentTarget.value) >= 0 && Number(e.currentTarget.value) < maxValue) {
             setDisableSetButton(false)
             props.changeEnterValueMode(true)
             props.setIncorrectStatus(false)
             props.setDisableResetButton(true)
+            props.setDisableIncButton(true)
         }
         setStartValue(Number(e.currentTarget.value))
     }
@@ -53,6 +58,7 @@ function SetCounter(props: SetCounterPropsType) {
         props.setCountValue(startValue)
         props.setLocalStartValue(startValue)
         props.changeEnterValueMode(false)
+        props.setDisableIncButton(false)
     }
 
     return (

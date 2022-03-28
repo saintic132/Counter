@@ -13,6 +13,7 @@ function Counter() {
     let [valueIsEntering, setValueIsEntering] = useState<boolean>(false);
     let [displayIncorrectValue, setDisplayIncorrectValue] = useState<boolean>(false);
     let [disableResetButton, setDisableResetButton] = useState<boolean>(true);
+    let [disableIncButton, setDisableIncButton] = useState<boolean>(false);
 
     let maxCountActivated = maxCountValue === countNumber
 
@@ -20,14 +21,17 @@ function Counter() {
         if (countNumber < maxCountValue) {
             setCountNumber(countNumber + 1)
             setDisableResetButton(false)
+            if ((countNumber + 1) === maxCountValue) {
+                setDisableIncButton(true)
+            }
         }
     }
 
     const resetCountNumber = () => {
         setCountNumber(localStartValue)
         setDisableResetButton(true)
+        setDisableIncButton(false)
     }
-
 
     const setCountMaxValue = (number: number) => {
         setMaxCountValue(number)
@@ -55,6 +59,7 @@ function Counter() {
                         setIncorrectStatus={setIncorrectStatus}
                         setLocalStartValue={setLocalStartValue}
                         setDisableResetButton={setDisableResetButton}
+                        setDisableIncButton={setDisableIncButton}
                         resetCountNumber={resetCountNumber}
                     />
                 </div>
@@ -73,7 +78,7 @@ function Counter() {
                     <div className={s.button}>
                         <CounterButton
                             onClick={increaseCountNumber}
-                            disable={maxCountActivated}
+                            disable={disableIncButton}
                         >
                             inc
                         </CounterButton>
