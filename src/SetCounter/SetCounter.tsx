@@ -6,6 +6,9 @@ type SetCounterPropsType = {
     setCountValue: (number: number) => void
     changeEnterValueMode: (status: boolean) => void
     setIncorrectStatus: (status: boolean) => void
+    setLocalStartValue: (number: number) => void
+    setDisableResetButton: (status: boolean) => void
+    resetCountNumber: () => void
 }
 
 function SetCounter(props: SetCounterPropsType) {
@@ -16,14 +19,17 @@ function SetCounter(props: SetCounterPropsType) {
 
 
     const increaseMaxValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) === startValue) {
+        debugger
+        if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) === startValue || startValue <= 0) {
             setDisableSetButton(true)
             props.setIncorrectStatus(true)
+            props.setDisableResetButton(true)
         }
-        if (Number(e.currentTarget.value) > startValue) {
+        if (Number(e.currentTarget.value) > startValue && Number(e.currentTarget.value) > 0 && startValue >= 0) {
             setDisableSetButton(false)
             props.changeEnterValueMode(true)
             props.setIncorrectStatus(false)
+            props.setDisableResetButton(true)
         }
         setMaxValue(Number(e.currentTarget.value))
     }
@@ -31,12 +37,13 @@ function SetCounter(props: SetCounterPropsType) {
         if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) >= maxValue) {
             setDisableSetButton(true)
             props.setIncorrectStatus(true)
+            props.setDisableResetButton(true)
         }
-
         if (Number(e.currentTarget.value) >= 0 && Number(e.currentTarget.value) < maxValue) {
             setDisableSetButton(false)
             props.changeEnterValueMode(true)
             props.setIncorrectStatus(false)
+            props.setDisableResetButton(true)
         }
         setStartValue(Number(e.currentTarget.value))
     }
@@ -44,8 +51,8 @@ function SetCounter(props: SetCounterPropsType) {
     const setCounterValueDisplay = () => {
         props.setCountMaxValue(maxValue)
         props.setCountValue(startValue)
+        props.setLocalStartValue(startValue)
         props.changeEnterValueMode(false)
-
     }
 
     return (

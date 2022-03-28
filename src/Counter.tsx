@@ -1,29 +1,31 @@
 import React, {useState} from 'react';
-import s from './App.module.css'
+import s from './Counter.module.css'
 import CounterButton from "./CounterButton/CounterButton";
 import CounterDisplay from "./CounterDisplay/CounterDisplay";
 import SetCounter from "./SetCounter/SetCounter";
 
-function App() {
+function Counter() {
+
 
     let [countNumber, setCountNumber] = useState<number>(0);
     let [maxCountValue, setMaxCountValue] = useState<number>(5);
+    let [localStartValue, setLocalStartValue] = useState<number>(0);
     let [valueIsEntering, setValueIsEntering] = useState<boolean>(false);
     let [displayIncorrectValue, setDisplayIncorrectValue] = useState<boolean>(false);
-    let [disableButton, setDisableButton] = useState<boolean>(true);
+    let [disableResetButton, setDisableResetButton] = useState<boolean>(true);
 
     let maxCountActivated = maxCountValue === countNumber
 
     const increaseCountNumber = () => {
         if (countNumber < maxCountValue) {
             setCountNumber(countNumber + 1)
-            setDisableButton(false)
+            setDisableResetButton(false)
         }
     }
 
     const resetCountNumber = () => {
-        setCountNumber(0)
-        setDisableButton(true)
+        setCountNumber(localStartValue)
+        setDisableResetButton(true)
     }
 
 
@@ -51,23 +53,24 @@ function App() {
                         setCountValue={setCountValue}
                         changeEnterValueMode={changeEnterValueMode}
                         setIncorrectStatus={setIncorrectStatus}
+                        setLocalStartValue={setLocalStartValue}
+                        setDisableResetButton={setDisableResetButton}
+                        resetCountNumber={resetCountNumber}
                     />
                 </div>
             </div>
             <div className={s.displayCounter}>
                 <div className={s.bodyCounter}>
-                    <div>
 
-                        <CounterDisplay
-                            countNumber={countNumber}
-                            maxCountActivated={maxCountActivated}
-                            valueIsEntering={valueIsEntering}
-                            displayIncorrectValue={displayIncorrectValue}
-                        />
+                    <CounterDisplay
+                        countNumber={countNumber}
+                        maxCountActivated={maxCountActivated}
+                        valueIsEntering={valueIsEntering}
+                        displayIncorrectValue={displayIncorrectValue}
+                    />
 
-                    </div>
+
                     <div className={s.button}>
-
                         <CounterButton
                             onClick={increaseCountNumber}
                             disable={maxCountActivated}
@@ -77,12 +80,12 @@ function App() {
 
                         <CounterButton
                             onClick={resetCountNumber}
-                            disable={disableButton}
+                            disable={disableResetButton}
                         >
                             reset
                         </CounterButton>
-
                     </div>
+
 
                 </div>
             </div>
@@ -91,4 +94,4 @@ function App() {
     );
 }
 
-export default App;
+export default Counter;
