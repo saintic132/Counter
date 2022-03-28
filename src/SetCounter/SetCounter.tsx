@@ -75,10 +75,12 @@ function SetCounter(props: SetCounterPropsType) {
     }, [])
 
     useEffect(() => {
+        if(maxValue > startValue)
         localStorage.setItem('maxValue', JSON.stringify(maxValue))
     }, [maxValue])
 
     useEffect(() => {
+        if(maxValue > startValue)
         localStorage.setItem('startValue', JSON.stringify(startValue))
     }, [startValue])
 
