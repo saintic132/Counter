@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import s from './SetCounter.module.css'
 
 type SetCounterPropsType = {
@@ -18,9 +18,7 @@ function SetCounter(props: SetCounterPropsType) {
     let [startValue, setStartValue] = useState<number>(0);
     let [disableSetButton, setDisableSetButton] = useState<boolean>(false);
 
-
     const increaseMaxValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        debugger
         if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) === startValue || startValue <= 0) {
             setDisableSetButton(true)
             props.setIncorrectStatus(true)
@@ -61,6 +59,29 @@ function SetCounter(props: SetCounterPropsType) {
         props.setDisableIncButton(false)
     }
 
+
+    useEffect(() => {
+        let getMaxValue = localStorage.getItem('maxValue')
+        if (getMaxValue) {
+            setMaxValue(Number(getMaxValue))
+        }
+        let getStartValue = localStorage.getItem('startValue')
+        if (getStartValue) {
+            setStartValue(Number(getStartValue))
+        }
+        props.setCountMaxValue(Number(getMaxValue))
+        props.setCountValue(Number(getStartValue))
+        props.setLocalStartValue(Number(getStartValue))
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('maxValue', JSON.stringify(maxValue))
+    }, [maxValue])
+
+    useEffect(() => {
+        localStorage.setItem('startValue', JSON.stringify(startValue))
+    }, [startValue])
+
     return (
         <div className={s.value}>
             <div className={s.insertValue}>
@@ -95,8 +116,8 @@ function SetCounter(props: SetCounterPropsType) {
                 <button
                     className={s.setButton}
                     onClick={setCounterValueDisplay}
-                    disabled={disableSetButton}
-                >set value
+                    disabled={disableSetButton}>
+                    set value
                 </button>
             </div>
         </div>
