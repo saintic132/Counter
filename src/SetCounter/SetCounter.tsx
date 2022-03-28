@@ -66,14 +66,14 @@ function SetCounter(props: SetCounterPropsType) {
         let getMaxValue = localStorage.getItem('maxValue')
         if (getMaxValue) {
             setMaxValue(Number(getMaxValue))
+            props.setCountMaxValue(Number(getMaxValue))
         }
         let getStartValue = localStorage.getItem('startValue')
         if (getStartValue) {
             setStartValue(Number(getStartValue))
+            props.setCountValue(Number(getStartValue))
+            props.setLocalStartValue(Number(getStartValue))
         }
-        props.setCountMaxValue(Number(getMaxValue))
-        props.setCountValue(Number(getStartValue))
-        props.setLocalStartValue(Number(getStartValue))
     }, [])
 
 
