@@ -57,6 +57,8 @@ function SetCounter(props: SetCounterPropsType) {
         props.setLocalStartValue(startValue)
         props.changeEnterValueMode(false)
         props.setDisableIncButton(false)
+        localStorage.setItem('maxValue', JSON.stringify(maxValue))
+        localStorage.setItem('startValue', JSON.stringify(startValue))
     }
 
 
@@ -74,15 +76,6 @@ function SetCounter(props: SetCounterPropsType) {
         props.setLocalStartValue(Number(getStartValue))
     }, [])
 
-    useEffect(() => {
-        if(maxValue > startValue)
-        localStorage.setItem('maxValue', JSON.stringify(maxValue))
-    }, [maxValue])
-
-    useEffect(() => {
-        if(maxValue > startValue)
-        localStorage.setItem('startValue', JSON.stringify(startValue))
-    }, [startValue])
 
     return (
         <div className={s.value}>
