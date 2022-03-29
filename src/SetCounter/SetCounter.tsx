@@ -1,80 +1,63 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import s from './SetCounter.module.css'
+import {mapDispatchToPropsType} from "./SetCounterContainer";
 
 type SetCounterPropsType = {
-    setCountMaxValue: (number: number) => void
-    setCountValue: (number: number) => void
-    changeEnterValueMode: (status: boolean) => void
-    setIncorrectStatus: (status: boolean) => void
-    setLocalStartValue: (number: number) => void
-    setDisableResetButton: (status: boolean) => void
-    setDisableIncButton: (status: boolean) => void
-    resetCountNumber: () => void
-}
+    maxCountValueForSet: number
+    startCountValueForSet: number
+    disableSetButton: boolean
+} & mapDispatchToPropsType
 
 function SetCounter(props: SetCounterPropsType) {
 
-    let [maxValue, setMaxValue] = useState<number>(5);
-    let [startValue, setStartValue] = useState<number>(0);
-    let [disableSetButton, setDisableSetButton] = useState<boolean>(false);
-
     const increaseMaxValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) === startValue || startValue <= 0) {
-            setDisableSetButton(true)
-            props.setIncorrectStatus(true)
+        if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) === props.startCountValueForSet || props.startCountValueForSet <= 0) {
+            props.setDisableSetButton(true)
+            props.setDisplayIncorrectValue(true)
             props.setDisableResetButton(true)
-            props.setDisableIncButton(true)
+            props.setDisableIncreaseButton(true)
         }
-        if (Number(e.currentTarget.value) > startValue && Number(e.currentTarget.value) > 0 && startValue >= 0) {
-            setDisableSetButton(false)
-            props.changeEnterValueMode(true)
-            props.setIncorrectStatus(false)
+
+        if (Number(e.currentTarget.value) > props.startCountValueForSet && Number(e.currentTarget.value) > 0 && props.startCountValueForSet >= 0) {
+            props.setDisableSetButton(false)
+            props.setDisplayIncorrectValue(false)
+            props.setDisplayEnterValue(true)
             props.setDisableResetButton(true)
-            props.setDisableIncButton(true)
+            props.setDisableIncreaseButton(true)
         }
-        setMaxValue(Number(e.currentTarget.value))
+        props.setMaxCountValue(Number(e.currentTarget.value))
     }
     const increaseStartValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) >= maxValue) {
-            setDisableSetButton(true)
-            props.setIncorrectStatus(true)
+        if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) >= props.maxCountValueForSet) {
+            props.setDisableSetButton(true)
+            props.setDisplayIncorrectValue(true)
             props.setDisableResetButton(true)
-            props.setDisableIncButton(true)
+            props.setDisableIncreaseButton(true)
         }
-        if (Number(e.currentTarget.value) >= 0 && Number(e.currentTarget.value) < maxValue) {
-            setDisableSetButton(false)
-            props.changeEnterValueMode(true)
-            props.setIncorrectStatus(false)
+        if (Number(e.currentTarget.value) >= 0 && Number(e.currentTarget.value) < props.maxCountValueForSet) {
+            props.setDisableSetButton(false)
+            props.setDisplayIncorrectValue(false)
+            props.setDisplayEnterValue(true)
             props.setDisableResetButton(true)
-            props.setDisableIncButton(true)
+            props.setDisableIncreaseButton(true)
+
         }
-        setStartValue(Number(e.currentTarget.value))
+        props.setStartCountValue(Number(e.currentTarget.value))
     }
 
-    const setCounterValueDisplay = () => {
-        props.setCountMaxValue(maxValue)
-        props.setCountValue(startValue)
-        props.setLocalStartValue(startValue)
-        props.changeEnterValueMode(false)
-        props.setDisableIncButton(false)
-        localStorage.setItem('maxValue', JSON.stringify(maxValue))
-        localStorage.setItem('startValue', JSON.stringify(startValue))
-    }
-
-
-    useEffect(() => {
-        let getMaxValue = localStorage.getItem('maxValue')
-        if (getMaxValue) {
-            setMaxValue(Number(getMaxValue))
-            props.setCountMaxValue(Number(getMaxValue))
-        }
-        let getStartValue = localStorage.getItem('startValue')
-        if (getStartValue) {
-            setStartValue(Number(getStartValue))
-            props.setCountValue(Number(getStartValue))
-            props.setLocalStartValue(Number(getStartValue))
-        }
-    }, [])
+        // useEffect(() => {
+    //     let getMaxValue = localStorage.getItem('maxValue')
+    //     if (getMaxValue) {
+    //         setMaxValue(Number(getMaxValue))
+    //         props.setCountMaxValue(Number(getMaxValue))
+    //     }
+    //     let getStartValue = localStorage.getItem('startValue')
+    //     if (getStartValue) {
+    //         setStartValue(Number(getStartValue))
+    //         props.setCountValue(Number(getStartValue))
+    //         props.setLocalStartValue(Number(getStartValue))
+    //     }
+    // }, [])
 
 
     return (
@@ -86,8 +69,8 @@ function SetCounter(props: SetCounterPropsType) {
                     </div>
                     <div>
                         <input
-                            className={!disableSetButton ? s.input : s.inputError}
-                            value={maxValue}
+                            className={!props.disableSetButton ? s.input : s.inputError}
+                            value={props.maxCountValueForSet}
                             onChange={increaseMaxValue}
                             type="number"
                         />
@@ -99,8 +82,8 @@ function SetCounter(props: SetCounterPropsType) {
                     </div>
                     <div>
                         <input
-                            className={!disableSetButton ? s.input : s.inputError}
-                            value={startValue}
+                            className={!props.disableSetButton ? s.input : s.inputError}
+                            value={props.startCountValueForSet}
                             onChange={increaseStartValue}
                             type="number"
                         />
@@ -110,8 +93,9 @@ function SetCounter(props: SetCounterPropsType) {
             <div className={s.setValue}>
                 <button
                     className={s.setButton}
-                    onClick={setCounterValueDisplay}
-                    disabled={disableSetButton}>
+                    onClick={props.setCounterValueDisplay}
+                    disabled={props.disableSetButton}
+                >
                     set value
                 </button>
             </div>

@@ -1,22 +1,32 @@
-import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react'
+import React from 'react'
 import s from './CounterButton.module.css'
+import {mapDispatchToPropsType} from "./CounterButtonContainer";
 
 type CounterButtonPropsType = {
-    disable: boolean
-} & DefaultButtonPropsType
-
-type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+    countNumber: number
+    maxCountValue: number
+    disableResetButton: boolean
+    disableIncreaseButton: boolean
+} & mapDispatchToPropsType
 
 function CounterButton(props: CounterButtonPropsType) {
-
     return (
-        <div >
+        <div className={s.button}>
             <button
                 className={s.counterButton}
-                disabled={props.disable}
+                disabled={props.countNumber === props.maxCountValue || props.disableIncreaseButton}
+                onClick={props.increaseCountNumber}
+            >
+                inc
+            </button>
 
-                {...props}
-            />
+            <button
+                className={s.counterButton}
+                disabled={props.disableResetButton}
+                onClick={props.resetCountNumber}
+            >
+                reset
+            </button>
         </div>
     )
 }
