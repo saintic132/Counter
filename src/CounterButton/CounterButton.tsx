@@ -10,12 +10,19 @@ type CounterButtonPropsType = {
 } & mapDispatchToPropsType
 
 function CounterButton(props: CounterButtonPropsType) {
+
+    const incCountButton = () => {
+        if (props.countNumber < props.maxCountValue) {
+            props.increaseCountNumber()
+        }
+    }
+
     return (
         <div className={s.button}>
             <button
                 className={s.counterButton}
                 disabled={props.countNumber === props.maxCountValue || props.disableIncreaseButton}
-                onClick={props.increaseCountNumber}
+                onClick={incCountButton}
             >
                 inc
             </button>

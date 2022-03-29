@@ -1,6 +1,6 @@
 import {combineReducers, createStore, Store} from "redux";
 import counterReducer, {CounterReducersType} from "./counter-reducer";
-import {ReduxStateType} from "../../../../Social-network/social-network-ts/src/redux/redux-store";
+import {loadState, saveState} from "./localstorage";
 
 export type RootReducerType = ReturnType<typeof rootReducer>
 type ActionsType = CounterReducersType
@@ -9,7 +9,12 @@ let rootReducer = combineReducers({
     counter: counterReducer
 })
 
+const store: Store<RootReducerType, ActionsType> = createStore(rootReducer, loadState());
 
-const store: Store<ReduxStateType, ActionsType> = createStore(rootReducer);
+store.subscribe(() => {
+    saveState({
+        counter: store.getState().counter
+    });
+});
 
 export default store

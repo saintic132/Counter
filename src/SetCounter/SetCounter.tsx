@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import s from './SetCounter.module.css'
 import {mapDispatchToPropsType} from "./SetCounterContainer";
 
@@ -45,20 +45,9 @@ function SetCounter(props: SetCounterPropsType) {
         props.setStartCountValue(Number(e.currentTarget.value))
     }
 
-        // useEffect(() => {
-    //     let getMaxValue = localStorage.getItem('maxValue')
-    //     if (getMaxValue) {
-    //         setMaxValue(Number(getMaxValue))
-    //         props.setCountMaxValue(Number(getMaxValue))
-    //     }
-    //     let getStartValue = localStorage.getItem('startValue')
-    //     if (getStartValue) {
-    //         setStartValue(Number(getStartValue))
-    //         props.setCountValue(Number(getStartValue))
-    //         props.setLocalStartValue(Number(getStartValue))
-    //     }
-    // }, [])
-
+    const counterValueDisplay = () => {
+        props.setCounterValueDisplay()
+    }
 
     return (
         <div className={s.value}>
@@ -93,7 +82,7 @@ function SetCounter(props: SetCounterPropsType) {
             <div className={s.setValue}>
                 <button
                     className={s.setButton}
-                    onClick={props.setCounterValueDisplay}
+                    onClick={counterValueDisplay}
                     disabled={props.disableSetButton}
                 >
                     set value

@@ -53,13 +53,11 @@ let initialCounterState: initialCounterStateType = {
 const counterReducer = (state: initialCounterStateType = initialCounterState, action: CounterReducersType): initialCounterStateType => {
     switch (action.type) {
         case 'INCREASE-COUNT-NUMBER':
-            if (state.countNumber < state.maxCountValue)
-                return {
-                    ...state,
-                    countNumber: state.countNumber + 1,
-                    disableResetButton: false
-                }
-            return state
+            return {
+                ...state,
+                countNumber: state.countNumber + 1,
+                disableResetButton: false
+            }
         case 'RESET-COUNT-NUMBER':
             return {
                 ...state,
@@ -123,7 +121,6 @@ const counterReducer = (state: initialCounterStateType = initialCounterState, ac
                 disableResetButton: true,
                 disableIncreaseButton: false,
                 valueIsEntering: false
-
             }
         }
         default:
@@ -142,7 +139,6 @@ export const setDisplayEnterValueAC = (status: boolean) => ({type: 'SET-DISPLAY-
 export const setDisableResetButtonAC = (status: boolean) => ({type: 'SET-DISABLE-RESET-BUTTON', status} as const)
 export const setDisableIncreaseButtonAC = (status: boolean) => ({type: 'SET-DISABLE-INCREASE-BUTTON', status} as const)
 export const setCounterValueDisplayAC = () => ({type: 'SET-COUNTER-VALUE-DISPLAY'} as const)
-
 
 export const setCountNumberAC = (number: number) => ({type: 'SET-COUNT-NUMBER', number} as const)
 
