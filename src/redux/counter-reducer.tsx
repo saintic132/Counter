@@ -8,16 +8,6 @@ export type CounterReducersType =
     | setErrorWithInvalidDateACType
     | setValidDateACType
 
-type increaseCountNumberACType = ReturnType<typeof increaseCountNumberAC>
-type resetCountNumberACType = ReturnType<typeof resetCountNumberAC>
-type setCountNumberACType = ReturnType<typeof setCountNumberAC>
-type setMaxCountValueACType = ReturnType<typeof setMaxCountValueAC>
-type setStartCountValueACType = ReturnType<typeof setStartCountValueAC>
-type setCounterValueDisplayACType = ReturnType<typeof setCounterValueDisplayAC>
-type setErrorWithInvalidDateACType = ReturnType<typeof setErrorWithInvalidDateAC>
-type setValidDateACType = ReturnType<typeof setValidDateAC>
-
-
 export type initialCounterStateType = {
     countNumber: number
     maxCountValue: number
@@ -110,17 +100,30 @@ const counterReducer = (state: initialCounterStateType = initialCounterState, ac
             return state
     }
 }
-
+type increaseCountNumberACType = ReturnType<typeof increaseCountNumberAC>
 export const increaseCountNumberAC = () => ({type: 'INCREASE-COUNT-NUMBER'} as const)
+
+type resetCountNumberACType = ReturnType<typeof resetCountNumberAC>
 export const resetCountNumberAC = () => ({type: 'RESET-COUNT-NUMBER'} as const)
 
-export const setMaxCountValueAC = (number: number) => ({type: 'INCREASE-TO-SET-MAX-COUNT-VALUE', number} as const)
-export const setStartCountValueAC = (number: number) => ({type: 'INCREASE-TO-SET-START-COUNT-VALUE', number} as const)
+
+type setCountNumberACType = ReturnType<typeof setCountNumberAC>
 export const setCountNumberAC = (number: number) => ({type: 'SET-COUNT-NUMBER', number} as const)
 
+type setMaxCountValueACType = ReturnType<typeof setMaxCountValueAC>
+export const setMaxCountValueAC = (number: number) => ({type: 'INCREASE-TO-SET-MAX-COUNT-VALUE', number} as const)
+
+type setStartCountValueACType = ReturnType<typeof setStartCountValueAC>
+export const setStartCountValueAC = (number: number) => ({type: 'INCREASE-TO-SET-START-COUNT-VALUE', number} as const)
+
+type setErrorWithInvalidDateACType = ReturnType<typeof setErrorWithInvalidDateAC>
 export const setErrorWithInvalidDateAC = () => ({type: 'SET-ERROR-WITH-INVALID-DATE'} as const)
+
+type setValidDateACType = ReturnType<typeof setValidDateAC>
 export const setValidDateAC = () => ({type: 'SET-VALID-DATE'} as const)
 
+
+type setCounterValueDisplayACType = ReturnType<typeof setCounterValueDisplayAC>
 export const setCounterValueDisplayAC = () => ({type: 'SET-COUNTER-VALUE-DISPLAY'} as const)
 
 

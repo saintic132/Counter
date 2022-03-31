@@ -17,7 +17,6 @@ let mapStateToProps = (state: RootReducerType) => {
     }
 }
 
-
 export type mapDispatchToPropsType = {
     setMaxCountValue: (number: number) => void
     setCountNumber: (number: number) => void
@@ -47,7 +46,6 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         setValidDate: () => {
             dispatch(setValidDateAC())
         }
-
     }
 }
 

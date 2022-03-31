@@ -14,7 +14,6 @@ function SetCounter(props: SetCounterPropsType) {
         if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) === props.startCountValueForSet || props.startCountValueForSet <= 0) {
             props.setErrorWithInvalidDate()
         }
-
         if (Number(e.currentTarget.value) > props.startCountValueForSet && Number(e.currentTarget.value) > 0 && props.startCountValueForSet >= 0) {
             props.setValidDate()
         }
@@ -26,7 +25,6 @@ function SetCounter(props: SetCounterPropsType) {
         }
         if (Number(e.currentTarget.value) >= 0 && Number(e.currentTarget.value) < props.maxCountValueForSet) {
             props.setValidDate()
-
         }
         props.setStartCountValue(Number(e.currentTarget.value))
     }
