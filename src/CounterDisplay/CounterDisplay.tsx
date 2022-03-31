@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./CounterDisplay.module.css";
-import CounterButtonContainer from "../CounterButton/CounterButtonContainer";
+import CounterButtonContainer from "./CounterButton/CounterButtonContainer";
 
 type CounterDisplayPropsType = {
     countNumber: number

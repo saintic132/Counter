@@ -5,9 +5,7 @@ import SetCounterContainer from "./SetCounter/SetCounterContainer";
 
 function Counter() {
 
-
     return (
-
         <div className={s.app}>
             <div className={s.counterSettings}>
                 <div className={s.setCounter}>
@@ -24,7 +22,6 @@ function Counter() {
                 </div>
             </div>
         </div>
-
     );
 }
 

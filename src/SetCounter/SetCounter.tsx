@@ -1,6 +1,7 @@
 import React from "react";
 import s from './SetCounter.module.css'
 import {mapDispatchToPropsType} from "./SetCounterContainer";
+import SetCounterButtonContainer from "./SetCounterButton/SetCounterButtonContainer";
 
 type SetCounterPropsType = {
     maxCountValueForSet: number
@@ -27,10 +28,6 @@ function SetCounter(props: SetCounterPropsType) {
             props.setValidDate()
         }
         props.setStartCountValue(Number(e.currentTarget.value))
-    }
-
-    const counterValueDisplay = () => {
-        props.setCounterValueDisplay()
     }
 
     return (
@@ -63,15 +60,9 @@ function SetCounter(props: SetCounterPropsType) {
                     </div>
                 </div>
             </div>
-            <div className={s.setValue}>
-                <button
-                    className={s.setButton}
-                    onClick={counterValueDisplay}
-                    disabled={props.disableSetButton}
-                >
-                    set value
-                </button>
-            </div>
+
+            <SetCounterButtonContainer />
+
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import {RootReducerType} from "../redux/redux-store";
-import {increaseCountNumberAC, resetCountNumberAC} from "../redux/counter-reducer";
+import {RootReducerType} from "../../redux/redux-store";
+import {increaseCountNumberAC, resetCountNumberAC} from "../../redux/counter-reducer";
 import {Dispatch} from "redux";
 import CounterButton from "./CounterButton";
 
