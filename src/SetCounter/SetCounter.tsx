@@ -12,34 +12,20 @@ function SetCounter(props: SetCounterPropsType) {
 
     const increaseMaxValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) === props.startCountValueForSet || props.startCountValueForSet <= 0) {
-            props.setDisableSetButton(true)
-            props.setDisplayIncorrectValue(true)
-            props.setDisableResetButton(true)
-            props.setDisableIncreaseButton(true)
+            props.setErrorWithInvalidDate()
         }
 
         if (Number(e.currentTarget.value) > props.startCountValueForSet && Number(e.currentTarget.value) > 0 && props.startCountValueForSet >= 0) {
-            props.setDisableSetButton(false)
-            props.setDisplayIncorrectValue(false)
-            props.setDisplayEnterValue(true)
-            props.setDisableResetButton(true)
-            props.setDisableIncreaseButton(true)
+            props.setValidDate()
         }
         props.setMaxCountValue(Number(e.currentTarget.value))
     }
     const increaseStartValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) >= props.maxCountValueForSet) {
-            props.setDisableSetButton(true)
-            props.setDisplayIncorrectValue(true)
-            props.setDisableResetButton(true)
-            props.setDisableIncreaseButton(true)
+            props.setErrorWithInvalidDate()
         }
         if (Number(e.currentTarget.value) >= 0 && Number(e.currentTarget.value) < props.maxCountValueForSet) {
-            props.setDisableSetButton(false)
-            props.setDisplayIncorrectValue(false)
-            props.setDisplayEnterValue(true)
-            props.setDisableResetButton(true)
-            props.setDisableIncreaseButton(true)
+            props.setValidDate()
 
         }
         props.setStartCountValue(Number(e.currentTarget.value))

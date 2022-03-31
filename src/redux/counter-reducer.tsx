@@ -4,24 +4,18 @@ export type CounterReducersType =
     | setCountNumberACType
     | setMaxCountValueACType
     | setStartCountValueACType
-    | setDisableSetButtonACType
-    | setDisplayIncorrectValueACType
-    | setDisplayEnterValueACType
-    | setDisableResetButtonACType
-    | setDisableIncreaseButtonACType
     | setCounterValueDisplayACType
+    | setErrorWithInvalidDateACType
+    | setValidDateACType
 
 type increaseCountNumberACType = ReturnType<typeof increaseCountNumberAC>
 type resetCountNumberACType = ReturnType<typeof resetCountNumberAC>
 type setCountNumberACType = ReturnType<typeof setCountNumberAC>
 type setMaxCountValueACType = ReturnType<typeof setMaxCountValueAC>
 type setStartCountValueACType = ReturnType<typeof setStartCountValueAC>
-type setDisableSetButtonACType = ReturnType<typeof setDisableSetButtonAC>
-type setDisplayIncorrectValueACType = ReturnType<typeof setDisplayIncorrectValueAC>
-type setDisplayEnterValueACType = ReturnType<typeof setDisplayEnterValueAC>
-type setDisableResetButtonACType = ReturnType<typeof setDisableResetButtonAC>
-type setDisableIncreaseButtonACType = ReturnType<typeof setDisableIncreaseButtonAC>
 type setCounterValueDisplayACType = ReturnType<typeof setCounterValueDisplayAC>
+type setErrorWithInvalidDateACType = ReturnType<typeof setErrorWithInvalidDateAC>
+type setValidDateACType = ReturnType<typeof setValidDateAC>
 
 
 export type initialCounterStateType = {
@@ -82,34 +76,23 @@ const counterReducer = (state: initialCounterStateType = initialCounterState, ac
                 startCountValueForSet: action.number
             }
         }
-        case 'SET-DISABLE-SET-BUTTON': {
+        case 'SET-ERROR-WITH-INVALID-DATE': {
             return {
                 ...state,
-                disableSetButton: action.status
+                disableSetButton: true,
+                displayIncorrectValue: true,
+                disableResetButton: true,
+                disableIncreaseButton: true
             }
         }
-        case 'SET-DISPLAY-INCORRECT-VALUE': {
+        case 'SET-VALID-DATE': {
             return {
                 ...state,
-                displayIncorrectValue: action.status
-            }
-        }
-        case 'SET-DISPLAY-ENTER-VALUE': {
-            return {
-                ...state,
-                valueIsEntering: action.status
-            }
-        }
-        case 'SET-DISABLE-RESET-BUTTON': {
-            return {
-                ...state,
-                disableResetButton: action.status
-            }
-        }
-        case 'SET-DISABLE-INCREASE-BUTTON': {
-            return {
-                ...state,
-                disableIncreaseButton: action.status
+                disableSetButton: false,
+                displayIncorrectValue: false,
+                valueIsEntering: true,
+                disableResetButton: true,
+                disableIncreaseButton: true
             }
         }
         case 'SET-COUNTER-VALUE-DISPLAY': {
@@ -133,13 +116,12 @@ export const resetCountNumberAC = () => ({type: 'RESET-COUNT-NUMBER'} as const)
 
 export const setMaxCountValueAC = (number: number) => ({type: 'INCREASE-TO-SET-MAX-COUNT-VALUE', number} as const)
 export const setStartCountValueAC = (number: number) => ({type: 'INCREASE-TO-SET-START-COUNT-VALUE', number} as const)
-export const setDisableSetButtonAC = (status: boolean) => ({type: 'SET-DISABLE-SET-BUTTON', status} as const)
-export const setDisplayIncorrectValueAC = (status: boolean) => ({type: 'SET-DISPLAY-INCORRECT-VALUE', status} as const)
-export const setDisplayEnterValueAC = (status: boolean) => ({type: 'SET-DISPLAY-ENTER-VALUE', status} as const)
-export const setDisableResetButtonAC = (status: boolean) => ({type: 'SET-DISABLE-RESET-BUTTON', status} as const)
-export const setDisableIncreaseButtonAC = (status: boolean) => ({type: 'SET-DISABLE-INCREASE-BUTTON', status} as const)
+export const setCountNumberAC = (number: number) => ({type: 'SET-COUNT-NUMBER', number} as const)
+
+export const setErrorWithInvalidDateAC = () => ({type: 'SET-ERROR-WITH-INVALID-DATE'} as const)
+export const setValidDateAC = () => ({type: 'SET-VALID-DATE'} as const)
+
 export const setCounterValueDisplayAC = () => ({type: 'SET-COUNTER-VALUE-DISPLAY'} as const)
 
-export const setCountNumberAC = (number: number) => ({type: 'SET-COUNT-NUMBER', number} as const)
 
 export default counterReducer

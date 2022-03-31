@@ -4,10 +4,9 @@ import SetCounter from "./SetCounter";
 import {RootReducerType} from "../redux/redux-store";
 import {
     setCounterValueDisplayAC,
-    setCountNumberAC, setDisableIncreaseButtonAC, setDisableResetButtonAC,
-    setDisableSetButtonAC, setDisplayEnterValueAC, setDisplayIncorrectValueAC,
+    setCountNumberAC, setErrorWithInvalidDateAC,
     setMaxCountValueAC,
-    setStartCountValueAC
+    setStartCountValueAC, setValidDateAC
 } from "../redux/counter-reducer";
 
 let mapStateToProps = (state: RootReducerType) => {
@@ -23,12 +22,9 @@ export type mapDispatchToPropsType = {
     setMaxCountValue: (number: number) => void
     setCountNumber: (number: number) => void
     setStartCountValue: (number: number) => void
-    setDisableSetButton: (status: boolean) => void
-    setDisplayIncorrectValue: (status: boolean) => void
-    setDisplayEnterValue: (status: boolean) => void
-    setDisableResetButton: (status: boolean) => void
-    setDisableIncreaseButton: (status: boolean) => void
     setCounterValueDisplay: () => void
+    setErrorWithInvalidDate: () => void
+    setValidDate: () => void
 }
 
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
@@ -42,23 +38,14 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         setCountNumber: (number: number) => {
             dispatch(setCountNumberAC(number))
         },
-        setDisableSetButton: (status: boolean) => {
-            dispatch(setDisableSetButtonAC(status))
-        },
-        setDisplayIncorrectValue: (status: boolean) => {
-            dispatch(setDisplayIncorrectValueAC(status))
-        },
-        setDisplayEnterValue: (status: boolean) => {
-            dispatch(setDisplayEnterValueAC(status))
-        },
-        setDisableResetButton:(status: boolean) => {
-            dispatch(setDisableResetButtonAC(status))
-        },
-        setDisableIncreaseButton: (status: boolean) => {
-            dispatch(setDisableIncreaseButtonAC(status))
-        },
         setCounterValueDisplay: () => {
             dispatch(setCounterValueDisplayAC())
+        },
+        setErrorWithInvalidDate: () => {
+            dispatch(setErrorWithInvalidDateAC())
+        },
+        setValidDate: () => {
+            dispatch(setValidDateAC())
         }
 
     }
