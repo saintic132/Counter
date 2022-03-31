@@ -1,5 +1,5 @@
 import React from "react";
-import s from "../SetCounter.module.css";
+import s from "./SetCounterButton.module.css";
 import {mapDispatchToSetCounterButtonType} from "./SetCounterButtonContainer";
 
 type SetCounterButtonPropsType = {

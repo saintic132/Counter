@@ -1,0 +1,26 @@
+.setValue {
+    border: 2px solid #83B9E0;
+    border-radius: 10px;
+    margin: 30px 0 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.setButton {
+    background-color: #83B9E0;
+    font-size: 40px;
+    border: 1px solid #83B9E0;
+    border-radius: 10px;
+    box-shadow: 0 9px #999;
+}
+
+.setButton:active {
+    background-color: #83B9E0;
+    font-size: 40px;
+    border: 1px solid #83B9E0;
+    border-radius: 10px;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
